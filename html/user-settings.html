@@ -1,0 +1,135 @@
+<head>
+    <style>
+        .icon {
+            width: 15px;
+            margin-bottom: -2px;
+        }
+
+        .edit {
+            color: var(--color-font);
+        }
+
+        td .value-box {
+            transform: translateY(-3px);
+            border: none;
+            padding: 3px;
+            background-color: var(--lightgray);
+            transition: 0.5s;
+        }
+
+        td .value-box:hover {
+            background-color: var(--azul-mge);
+        }
+
+        .user-profile {
+            font-size: 0.8em;
+            font-style: italic;
+        }
+
+        .col1 {
+            text-align: start;
+        }
+
+        table {
+            text-align: center;
+        }
+
+        td {
+            width: 120px;
+            text-align: center;
+        }
+
+        tr {
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        th {
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+
+        .box {
+            text-align: center;
+            width: 80px;
+        }
+    </style>
+    <script>
+        function showPasswords() {
+            $("#show-passwords").change(function () {
+                if ($(this).is(':checked')) {
+                    $('.passwords').attr('type', 'text');
+                } else {
+                    $('.passwords').attr('type', 'password');
+                }
+            });
+        }
+        $("#show-passwords").click(function () {
+            if ($(this).is(':checked')) {
+                $('.passwrods').attr('type', 'text');
+            } else {
+                $('.passwords').attr('type', 'password');
+            }
+        });
+    </script>
+</head>
+
+<section>
+    <div class="display-title">
+        <h3>User Settings</h3>
+        <hr>
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <th><span id="th-users">Users</span></th>
+                <th><span id="th-profile">Profile</span></th>
+                <th><span id="th-action">Password</span></th>
+            </tr>
+            <tr>
+                <td class="col1">
+                    <img id="user-admin" class="icon" src="../img/adm-icon.svg" alt="user">
+                    <input type="text" class="box" value="Marcelo">
+                </td>
+                <td class="user-profile">Admin</td>
+                <td>
+                    <div>
+                        <input class="passwords box" type="password">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col1">
+                    <img class="icon" src="../img/user-icon.svg" alt="user">
+                    <input type="text" class="box" value="Rubens">
+                </td>
+                <td class="user-profile">Guest</td>
+                <td>
+                    <div>
+                        <input class="passwords box" type="password">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col1">
+                    <img class="icon" src="../img/user-icon.svg" alt="user">
+                    <input type="text" class="box" value="Lucas">
+                </td>
+                <td class="user-profile">Guest</td>
+                <td>
+                    <div>
+                        <input class="passwords box" type="password">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <div>
+            <input onclick="showPasswords()" type="checkbox" name="show-passwords" id="show-passwords">
+            <label for="show-passwords">Show Passwords</label>
+        </div>
+        <button>Save</button>
+    </div>
+</section>

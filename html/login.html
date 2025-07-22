@@ -1,0 +1,105 @@
+<head>
+    <style>
+        label {
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        input {
+            width: 200px;
+            height: 30px;
+            padding: 5px;
+            margin-bottom: 10px;
+            font-size: 0.8em;
+        }
+
+        .logo-in-out {
+            filter: drop-shadow(0px 5px 5px var(--shadow));
+            width: 200px;
+        }
+
+        #login-submit {
+            width: 210px;
+            height: 40px;
+            font-weight: bold;
+            transition: 1.5s;
+        }
+
+        #login-submit:hover {
+            background: var(--btn-back-mge);
+        }
+
+        #show-pass {
+            cursor: pointer;
+            margin-top: 10px;
+            width: 20px;
+        }
+
+        .show {
+            margin-top: -15px;
+        }
+
+        .show span {
+            font-size: 0.9em;
+        }
+
+        .frame {
+            margin: 0 auto;
+            width: 400px;
+        }
+    </style>
+    <script defer>
+        function show() {
+            $("#show-pass").change(function () {
+                if ($(this).is(':checked')) {
+                    $('#password-login').attr('type', 'text');
+                } else {
+                    $('#password-login').attr('type', 'password');
+                }
+            });
+        };
+        function login_sign_in() {
+            const user = $("#user-login").val();
+            const password = $("#password-login").val();
+            if (user === "" || password === "") {
+                alert("ENTER USER AND PASSWORD");
+            } else if (user === "MGE" && password === "mge123") {
+                principal();
+            } else {
+                alert("USER OR PASSWORD INCORRECT");
+            }
+        }
+    </script>
+</head>
+<section class="frame center">
+    <div>
+        <figure>
+            <a title="MGE Broadcast" href="https://www.mgebr.com.br/" target="_blank" rel="noopener noreferrer">
+                <img class="logo-in-out" src="../img/logo-mge.svg" alt="logo-mge">
+            </a>
+        </figure>
+        <div class="center">
+            <form>
+                <div>
+                    <label for="user">User:</label><br>
+                    <input onkeydown="javascript: if(event.keyCode == 13) login_sign_in();" title="ENTER USER"
+                        value="MGE" type="text" name="user" placeholder="ENTER USER" id="user-login" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label><br>
+                    <input onkeydown="javascript: if(event.keyCode == 13) login_sign_in();" title="ENTER PASSWORD"
+                        value="mge123" type="password" name="password" id="password-login" placeholder="ENTER PASSWORD"
+                        required>
+                </div>
+                <div class="center show">
+                    <div>
+                        <input onclick="show()" title="SHOW PASSWORD" type="checkbox" name="show-pass" id="show-pass">
+                    </div>
+                    <label for="show-pass">Show Password</label>
+                </div>
+                <input title="SIGN IN" id="login-submit" class="btn btn-primary" type="button" onclick="login_sign_in()"
+                    value="SIGN IN">
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,214 @@
+<head>
+    <style>
+        section>h4 {
+            font-size: 1.2em;
+            margin: 0;
+            margin-top: -10px;
+        }
+
+        #graph-container {
+            width: 450px;
+            margin: 10px 0;
+            margin-bottom: 30px;
+        }
+
+        #bar-background {
+            width: 100%;
+            height: 40px;
+            border: solid 3.5px var(--lightgray);
+            background-color: var(--background);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 100%;
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.7) inset;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+
+        }
+
+        #percent-value {
+            font-family: mgenumbers;
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            font-size: 0.9em;
+            transform: translateY(-8px);
+            font-weight: bold;
+            color: var(--color-font);
+        }
+
+        #chart-points {
+            font-family: mgenumbers;
+            font-weight: bold;
+            transform: translateY(-10px);
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 13px;
+            font-size: 0.65em;
+            color: var(--lightgray);
+        }
+
+        .barra {
+            transform: translateY(-5px);
+        }
+    </style>
+    <script defer>
+        window.updateBar = function (value) {
+            const max = 150;
+            const blueEnd = 10;
+            const greenEnd = 90;
+            const yellowEnd = 120;
+
+            // Porcentagens relativas ao valor máximo
+            const bluePct = Math.min(blueEnd, value) / max * 100;
+            const greenPct = Math.min(Math.max(value - blueEnd, 0), greenEnd - blueEnd) / max * 100;
+            const yellowPct = Math.min(Math.max(value - greenEnd, 0), yellowEnd - greenEnd) / max * 100;
+            const redPct = Math.max(value - yellowEnd, 0) / max * 100;
+
+            // Pontos de parada
+            const blueStop = bluePct;
+            const greenStart = blueStop;
+            const greenMid = blueStop + greenPct * 0.5;
+            const greenStop = blueStop + greenPct;
+            const yellowStart = greenStop;
+            const yellowMid = greenStop + yellowPct * 0.5;
+            const yellowStop = greenStop + yellowPct;
+            const redStart = yellowStop;
+            const redMid = yellowStop + redPct * 0.5;
+            const redStop = blueStop + greenPct + yellowPct + redPct;
+
+            // Gradiente suave com transições intermediárias
+            let gradient = '';
+            if (value <= blueEnd) {
+                gradient = `linear-gradient(to right, 
+                var(--azul-mge) 0%, 
+                var(--azul-mge) ${blueStop}%, 
+                transparent ${blueStop}%, 
+                transparent 100%)`;
+            } else if (value <= greenEnd) {
+                gradient = `linear-gradient(to right, 
+                var(--azul-mge) 0%, 
+                var(--azul-mge) ${blueStop}%,
+                /* transição azul-verde */
+                var(--azul-mge) ${greenStart}%,
+                var(--verde-linha-s) ${greenMid}%,
+                var(--verde-linha-s) ${greenStop}%,
+                transparent ${greenStop}%,
+                transparent 100%)`;
+            } else if (value <= yellowEnd) {
+                gradient = `linear-gradient(to right, 
+                var(--azul-mge) 0%, 
+                var(--azul-mge) ${blueStop}%,
+                /* transição azul-verde */
+                var(--azul-mge) ${greenStart}%,
+                var(--verde-linha-s) ${greenMid}%,
+                var(--verde-linha-s) ${greenStop}%,
+                /* transição verde-amarelo */
+                var(--verde-linha-s) ${yellowStart}%,
+                var(--yllw-graph) ${yellowMid}%,
+                var(--yllw-graph) ${yellowStop}%,
+                transparent ${yellowStop}%,
+                transparent 100%)`;
+            } else {
+                gradient = `linear-gradient(to right, 
+                var(--azul-mge) 0%, 
+                var(--azul-mge) ${blueStop}%,
+                /* transição azul-verde */
+                var(--azul-mge) ${greenStart}%,
+                var(--verde-linha-s) ${greenMid}%,
+                var(--verde-linha-s) ${greenStop}%,
+                /* transição verde-amarelo */
+                var(--verde-linha-s) ${yellowStart}%,
+                var(--yllw-graph) ${yellowMid}%,
+                var(--yllw-graph) ${yellowStop}%,
+                /* transição amarelo-vermelho */
+                var(--yllw-graph) ${redStart}%,
+                var(--red) ${redMid}%,
+                var(--red) ${redStop}%,
+                transparent ${redStop}%,
+                transparent 100%)`;
+            }
+
+            const progressBar = $('#progress-bar');
+            const percentText = $('#percent-value');
+            progressBar.css({
+                width: '100%',
+                background: gradient
+            });
+            percentText.text(value + '%');
+        }
+        // -----------------APENAS VISUALIZACAO DO GRAFICO!!----------------
+        /*
+        function updateBarRecursive() {  
+            updateBar(Math.floor(Math.random() * 150));
+            setTimeout(updateBarRecursive, 700);
+        }
+        updateBarRecursive(); 
+        */
+        updateBar(Math.floor(Math.random() * 150));
+        //--------------------------------------------------------
+    </script>
+</head>
+<section>
+    <div class="display-title">
+        <h3>Main Measurements</h3>
+        <hr>
+    </div>
+    <h4>Total Modulation (%)</h4>
+    <div id="graph-container">
+        <div title="TOTAL MODULATION" id="bar-background">
+            <div id="progress-bar" class="bar"></div>
+            <div id="chart-points">
+                <span class="barra">|</span>
+                <span>9</span>
+                <span class="barra">|</span>
+                <span>21</span>
+                <span class="barra">|</span>
+                <span>33</span>
+                <span class="barra">|</span>
+                <span>45</span>
+                <span class="barra">|</span>
+                <span>57</span>
+                <span class="barra">|</span>
+                <span>69</span>
+                <span class="barra">|</span>
+                <span>81</span>
+                <span class="barra">|</span>
+                <span>93</span>
+                <span class="barra">|</span>
+                <span>105</span>
+                <span class="barra">|</span>
+                <span>129</span>
+                <span class="barra">|</span>
+                <span>141</span>
+                <span class="barra">|</span>
+            </div>
+            <span title="TOTAL MODULATION" id="percent-value">#</span>
+        </div>
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td>Reverse Power</td>
+                <td class="col2"><span id="mainWatts" class="value-box">#####</span>Watts</td>
+            </tr>
+            <tr>
+                <td>Forward Power</td>
+                <td class="col2"><span id="mainKW" class="value-box">#####</span>Kw</td>
+            </tr>
+            <tr>
+                <td>PA Voltage</td>
+                <td class="col2"><span id="mainAmp" class="value-box">#####</span>Volts</td>
+            </tr>
+            <tr>
+                <td>Total PA Cuerrent</td>
+                <td class="col2"><span id="mainVolts" class="value-box">#####</span>Amp</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,625 @@
+<head>
+    <style>
+        #display-painel {
+            flex-wrap: wrap;
+            background-color: var(--frame-principal);
+            padding: 20px 20px 10px 20px;
+        }
+
+        #model-mode,
+        #serie-date {
+            margin-top: -10px;
+        }
+
+        #model-mode {
+            margin-right: 15px;
+        }
+
+        #info,
+        #display {
+            width: 560px;
+        }
+
+        #painel {
+            margin-bottom: 20px;
+            width: 540px;
+        }
+
+        #info {
+            font-size: 0.75em;
+            height: 110px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        #info h4 {
+            font-size: 1.5em;
+            margin: 10px 0 0 0;
+        }
+
+        .logo-info {
+            height: 85px;
+        }
+
+        #display {
+            margin-bottom: 20px;
+            height: 350px;
+        }
+
+        #menu-content {
+            z-index: 1000;
+            font-size: 1.1em;
+            color: var(--color-font);
+            text-align: justify;
+            margin-left: -10px;
+            transform: translateY(-57px);
+            border-radius: 10px;
+            align-items: center;
+            background-color: var(--shadow);
+            width: 0;
+            height: 373px;
+            transition: 1s;
+            overflow: hidden;
+        }
+
+        #menu-links {
+            display: inline-block;
+            padding-top: 10px;
+            padding-bottom: 15px;
+            width: 100%;
+            overflow-y: scroll;
+            display: none;
+            height: 308px;
+        }
+
+        #menu-exit {
+            margin-top: -350px;
+        }
+
+        .menu-exit {
+            border-radius: 10px;
+            z-index: 100;
+            padding: 8px;
+            width: 25px;
+            color: var(--lightgray);
+            transition: 0.3s;
+        }
+
+        .link-menu a {
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            margin-left: 40px;
+            filter: drop-shadow(0px 0px 2px var(--shadow));
+            transition: 0.3s;
+        }
+
+        .link-menu a:hover {
+            margin-left: 25px;
+            font-size: 1.5em;
+            color: var(--azul-mge);
+            filter: drop-shadow(0px 0px 2px var(--shadow));
+        }
+
+        .active-menu a:hover,
+        .active-menu a {
+            cursor: default;
+            pointer-events: none;
+            margin-left: 40px;
+            color: var(--lightgray);
+            font-size: 1.2em;
+        }
+
+        .menu-exit:hover {
+            scale: 1.2;
+            background-color: var(--frame-principal);
+            transition: 0.3s;
+        }
+
+        #menu-header {
+            background-color: var(--background);
+            padding: 0 15px
+        }
+
+        #close-menu {
+            padding: 5px;
+            z-index: 3000;
+            background-color: var(--lightgray);
+            width: 15px;
+            border-radius: 5px;
+            margin-top: 7px;
+            transition: 0.3s;
+        }
+
+        #close-menu:hover {
+            scale: 1.5;
+            background-color: var(--azul-mge);
+        }
+
+        #user-menu {
+            border-radius: 10px;
+            padding: 0 10px;
+            color: var(--color-font);
+            transition: 0.5s;
+        }
+
+        #user-menu:hover {
+            background-color: var(--azul-mge);
+            transition: 1s;
+
+        }
+
+        .user-menu-icon {
+            margin-top: 10px;
+            width: 25px;
+        }
+
+        #user-name-menu {
+            display: inline-block;
+            transform: translateY(-7px);
+        }
+
+        #painel {
+            text-transform: uppercase;
+            height: 450px;
+            color: var(--lightgray);
+            padding: 30px 20px;
+            text-align: center;
+            font-family: mgenumbers;
+        }
+
+        #painel h3 {
+            margin: 0;
+            margin-top: 10px;
+            color: var(--color-font);
+        }
+
+        #painel h4 {
+            margin: 10px;
+        }
+
+        #painel figure {
+            margin: 0;
+        }
+
+
+        .painel-slot {
+            border: 3px solid var(--lightgray);
+            background-color: var(--frame-principal);
+        }
+
+        #faults {
+            margin-bottom: 20px;
+        }
+
+        #power,
+        #carrier {
+            height: 250px;
+        }
+
+        #power {
+            width: 250px;
+        }
+
+        #carrier {
+            width: 220px;
+        }
+
+        #power-content,
+        #carrier-content {
+            margin-top: 30px;
+        }
+
+        #power-status-icons {
+            margin-top: 5px;
+        }
+
+        .align-end {
+            align-items: end;
+        }
+
+        #mid-icon,
+        #mid-icon-on {
+            transform: translateX(10px);
+        }
+
+        .btn-painel {
+            margin-top: 40px;
+            height: 28px;
+            width: 40px;
+        }
+
+        #display-content {
+            align-items: start;
+            margin: 0 auto;
+            width: 550px;
+            height: 350px;
+            text-align: center;
+        }
+
+        .display-title h3 {
+            font-size: 1.5em;
+            margin-top: 5px;
+        }
+
+        hr {
+            width: 60%;
+            color: var(--color-font);
+            margin-top: -20px;
+            margin-bottom: 20px;
+            border: solid 0.2px;
+        }
+
+        table {
+            font-weight: bold;
+            text-align: justify;
+            border: 3px solid var(--lightgray);
+            border-radius: 10px;
+            border-spacing: 0;
+            width: 530px;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--frame-principal);
+        }
+
+        tr {
+            justify-content: space-between;
+            height: 30px;
+        }
+
+        td {
+            text-align: left;
+            border: none;
+            padding: 7px 20px;
+            font-size: 1em;
+        }
+
+        td .value-box {
+            font-size: 0.8em;
+            margin: 0 10px;
+        }
+
+        .col2 {
+            width: 150px;
+        }
+
+        .total-value {
+            margin: -10px auto;
+            margin-top: 50px;
+
+            font-family: mgenumbers;
+            font-size: 3em;
+        }
+
+        .total-value span {
+            width: 200px;
+            height: 80px;
+        }
+
+        .total-value>.value-box {
+            padding: 30px 15px;
+        }
+
+        .total-unit {
+            margin-top: 20px;
+        }
+
+        .on-red {
+            filter: drop-shadow(0 0 0.5rem var(--red));
+        }
+
+        .on-green {
+            filter: drop-shadow(0 0 0.5rem var(--verde-linha-s));
+        }
+
+        .on-yllw {
+            filter: drop-shadow(0 0 0.5rem var(--yllw));
+        }
+
+        .icon-on {
+            display: none;
+        }
+
+        #info .value-box {
+            font-weight: bold;
+            width: 100px;
+            display: inline-block;
+        }
+
+        #info-txt {
+            margin: 0 -15px;
+        }
+
+
+        #warning {
+            scale: 1.2;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            width: 250px;
+            background: var(--background);
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgb(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        #warning,
+        #warning-header,
+        #warning-txt {
+            width: 250px;
+        }
+
+        #warning h2,
+        h3 {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+
+        #warning img {
+            margin-right: 10px;
+        }
+
+
+        #warning-header {
+            background-color: var(--red);
+        }
+
+        #warning-txt {
+            text-align: center;
+            color: var(--red);
+        }
+
+        .blink-warning{
+            animation: blink 1.7s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script defer>
+        $("#warning").hide();
+        leds_blink();
+        main_measurements();
+    </script>
+</head>
+<section id="warning" class="center">
+    <div id="warning-content">
+        <div id="warning-header" class="center">
+            <img src="../img/warning.svg" alt="warning" width="40">
+            <h2>
+                Warning
+            </h2>
+        </div>
+        <h3 id="warning-txt">External<br>Combiner</h3>  <!-- ERROR MESSAGE -->
+    </div>
+</section>
+<section id="display-painel" class="around frame">
+    <div id="display-container">
+        <div id="info" class="frame center">
+            <figure>
+                <a title="MGE BROADCAST" href="https://www.mgebr.com.br/" target="_blank" rel="noopener noreferrer">
+                    <img class="logo-info" src="../img/logo-mge.svg" alt="logo-mge">
+                </a>
+            </figure>
+            <div id="info-txt" class="center">
+                <div id="model-mode">
+                    <div>
+                        <h4>Model:</h4>
+                        <span title="MODEL" class="value-box" id="TX_Model"> FM50s</span>
+                    </div>
+                    <div>
+                        <h4>Mode:</h4>
+                        <span title="MODE" class="value-box" id="ModeSelect">MASTER</span>
+                    </div>
+                </div>
+                <div id="serie-date">
+                    <div>
+                        <h4>Serie:</h4>
+                        <span title="SERIE" class="value-box" id="TX_Serial">123456789</span>
+                    </div>
+                    <div>
+                        <h4>Date:</h4>
+                        <span title="DATE" class="value-box" id="info-date"><b id="TX_DD">28</b>/<b id="TX_MM">02</b>/<b
+                                id="TX_AA">97</b></span>
+                    </div>
+                </div>
+            </div>
+            <figure>
+                <a title="LINHA S" href="https://www.mgebr.com.br/categoria/transmissores-fm-linha-sustainability/"
+                    target="_blank" rel="noopener noreferrer">
+                    <img class="logo-info" src="../img/logo-linha-s.svg" alt="logo-linha-s">
+                </a>
+            </figure>
+        </div>
+        <div id="display" class="frame">
+
+            <div id="display-content" class="center blur">
+                <!-- Display Pages Here -->
+            </div>
+            <div id="menu-exit" class="between blur">
+                <div>
+                    <a title="MENU" id="menu" href="#">
+                        <img onclick="open_menu()" class="menu-exit" src="../img/menu.svg" alt="menu">
+                    </a>
+                </div>
+                <div>
+                    <a title="EXIT" id="exit" onclick="exit()" href="#">
+                        <img class="menu-exit" src="../img/exit.svg" alt="exit">
+                    </a>
+                </div>
+            </div>
+            <div id="menu-content">
+                <div id="menu-header" class="between">
+                    <a title="USER SETTINGS" onclick="user_settings()" id="user-menu" href="#">
+                        <img id="user-menu-guest" class="user-menu-icon" src="../img/user-icon.svg" alt="user">
+                        <span id="user-name-menu">User Name</span>
+                    </a>
+                    <a title="CLOSE MENU" onclick="close_menu()" href="#">
+                        <img id="close-menu" src="../img/close-menu.svg" alt="close-menu">
+                    </a>
+                </div>
+                <div id="menu-links">
+                    <div id="menu-links-list">
+                        <div id="menu-1" class="link-menu"><a onclick="main_measurements()" href="#">1 - Main
+                                Measurements</a></div>
+                        <div id="menu-2" class="link-menu"><a onclick="total_reverse()" href="#">2 - Total Reverse</a>
+                        </div>
+                        <div id="menu-3" class="link-menu"><a onclick="total_power()" href="#">3 - Total Power</a></div>
+                        <div id="menu-4" class="link-menu"><a onclick="external_faults_logs()" href="#">4 - External
+                                Faults Logs</a>
+                        </div>
+                        <div id="menu-5" class="link-menu"><a onclick="local_faults_logs()" href="#">5 - Local Faults
+                                Logs</a></div>
+                        <div id="menu-6" class="link-menu"><a onclick="external_combiner_status()" href="#">6 - External
+                                Combiner
+                                Status</a></div>
+                        <div id="menu-7" class="link-menu"><a onclick="local_combiner_status()" href="#">7 - Local
+                                Combiner
+                                Status</a></div>
+                        <div id="menu-7-1" class="link-menu"><a href="#" onclick="local_combiner_rejection_load()">7.1 -
+                                Local
+                                Combiner Rejection Load</a></div>
+                        <div id="menu-7-2" class="link-menu"><a href="#" onclick="local_combiner_pa_current()">7.2 -
+                                Local Combiner PA
+                                Current</a></div>
+                        <div id="menu-8" class="link-menu"><a onclick="temperature_measurements()" href="#">8 -
+                                Temperature
+                                Measurements</a></div>
+                        <div id="menu-9" class="link-menu"><a onclick="consumption_performance()" href="#">9 -
+                                Consumption
+                                Performance</a></div>
+                        <div id="menu-10" class="link-menu"><a onclick="pa_driver_status()" href="#">10 - PA Driver
+                                Status</a></div>
+                        <div id="menu-11" class="link-menu"><a onclick="voltage_meters()" href="#">11 - Voltage
+                                Meters</a></div>
+                        <div id="menu-12" class="link-menu"><a onclick="pa_current_measurements()" href="#">12 - PA
+                                Current
+                                Measurements</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="painel" class="frame">
+        <div id="faults" class="frame painel-slot">
+            <h3 onclick="toggle_warning()">
+                Faults
+            </h3>
+            <div id="faults-content" class="around">
+                <div>
+                    <h4 onclick="pll_on()" id="pll-txt">PLL</h4>
+                    <figure>
+                        <img id="pll-icon" src="../img/pll.svg" alt="PLL">
+                        <img id="pll-icon-on" class="on-red icon-on" src="../img/pll-on.svg" alt="PLL">
+                    </figure>
+                </div>
+                <div>
+                    <h4 onclick="swr_on()" id="swr-txt">SWR</h4>
+                    <figure>
+                        <img id="swr-icon" src="../img/swr.svg" alt="SWR">
+                        <img id="swr-icon-on" class="on-red icon-on" src="../img/swr-on.svg" alt="SWR">
+                    </figure>
+                </div>
+                <div>
+                    <h4 onclick="temp_on()" id="temp-txt">TEMP</h4>
+                    <figure>
+                        <img id="temp-icon" src="../img/temp.svg" alt="TEMP">
+                        <img id="temp-icon-on" class="on-red icon-on" src="../img/temp-on.svg" alt="TEMP">
+                    </figure>
+                </div>
+                <div>
+                    <h4 id="pa-txt" onclick="pa_on()">PA</h4>
+                    <figure>
+                        <img id="pa-icon" src="../img/pa.svg" alt="PA">
+                        <img id="pa-icon-on" class="on-red icon-on" src="../img/pa-on.svg" alt="PA">
+                    </figure>
+                </div>
+                <div>
+                    <h4 id="ac-txt" onclick="ac_on()">AC</h4>
+                    <figure>
+                        <img id="ac-icon" src="../img/ac.svg" alt="AC">
+                        <img id="ac-icon-on" class="on-red icon-on" src="../img/ac-on.svg" alt="AC">
+                    </figure>
+                </div>
+                <div>
+                    <h4 id="mute-txt" onclick="mute_on()">MUTE</h4>
+                    <figure>
+                        <img id="mute-icon" src="../img/mute.svg" alt="MUTE">
+                        <img id="mute-icon-on" class="on-yllw icon-on" src="../img/mute-on.svg" alt="MUTE">
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <div id="power-carrier" class="between">
+            <div id="power" class="frame painel-slot">
+                <h3>Power</h3>
+                <div id="power-content">
+                    <div id="power-status-text" class="around">
+                        <h4 id="low-txt">Low</h4>
+                        <h4 id="mid-txt">Mid</h4>
+                        <h4 id="high-txt">High</h4>
+                    </div>
+                    <div id="power-status-icons" class="around align-end">
+                        <figure>
+                            <img id="low-icon" src="../img/low.svg" alt="Low">
+                            <img id="low-icon-on" class="on-green icon-on" src="../img/low-on.svg" alt="Low">
+                        </figure>
+                        <figure>
+                            <img id="mid-icon" src="../img/mid.svg" alt="Mid">
+                            <img id="mid-icon-on" class="on-green icon-on" src="../img/mid-on.svg" alt="Mid">
+                        </figure>
+                        <figure>
+                            <img id="high-icon" src="../img/high.svg" alt="High">
+                            <img id="high-icon-on" class="on-green icon-on" src="../img/high-on.svg" alt="High">
+                        </figure>
+                    </div>
+                    <button title="POWER STATUS" id="Btn_PW" onclick="power_status_on()" class="btn btn-painel">
+                        <span class="btn-back"></span>
+                        <span class="btn-front"></span>
+                    </button>
+                </div>
+            </div>
+            <div id="carrier" class="frame painel-slot">
+                <h3>Carrier</h3>
+                <div id="carrier-content" class="around">
+                    <div>
+                        <h4 id="off-txt">Off</h4>
+                        <figure>
+                            <img id="power-icon" src="../img/power.svg" alt="Power">
+                            <img class="on-yllw icon-on" id="power-icon-on" src="../img/power-on.svg" alt="Power">
+                        </figure>
+                        <button title="OFF" id="Btn_SB" onclick="off_on()" class="btn btn-painel">
+                            <span class="btn-back"></span>
+                            <span class="btn-front"></span>
+                        </button>
+                    </div>
+                    <div>
+                        <h4 id="on-txt">On</h4>
+                        <figure>
+                            <img id="mic-icon" src="../img/mic.svg" alt="Mic">
+                            <img class="on-green icon-on" id="mic-icon-on" src="../img/mic-on.svg" alt="Mic">
+                        </figure>
+                        <button onclick="on_on()" title="ON" id="Btn_ON" class="btn btn-painel">
+                            <span class="btn-back"></span>
+                            <span class="btn-front"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

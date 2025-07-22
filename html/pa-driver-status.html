@@ -1,0 +1,75 @@
+<head>
+    <style>
+        table {
+            width: 610px;
+            scale: 0.83;
+            margin-top: -40px;
+            font-size: 0.87em;
+        }
+
+        .col1 {
+            width: 347.5px;
+            padding-left: 5px;
+        }
+
+        .col2 {
+            width: 170px;
+            padding-right: 5px;
+        }
+
+        .pa-command {
+            width: 130px;
+        }
+
+        /* Remova display: inline-block e width do tr */
+        /* tr {
+            width: 100%;
+        } */
+    </style>
+</head>
+<section>
+    <div class="display-title">
+        <h3>PA Driver Status</h3>
+        <hr>
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td class="col1">Exciter A Power In</td>
+                <td class="col2"><span id="PowerExciterA" class="value-box">#####</span>Watts</td>
+            </tr>
+            <tr>
+                <td class="col1">Exciter B Power In</td>
+                <td class="col2"><span id="PowerExciterB" class="value-box">#####</span>Watts</td>
+            </tr>
+            <tr>
+                <td class="col1">Power Driver Out</td>
+                <td class="col2"><span id="PowerDriverOut" class="value-box">#####</span>Watts</td>
+            </tr>
+            <tr>
+                <td class="col1">Power Forward PA</td>
+                <td class="col2"><span id="PowerForwardPA" class="value-box">#####</span>Kw</td>
+            </tr>
+            <tr>
+                <td class="col1">Driver Voltage</td>
+                <td class="col2"><span id="DriverVoltage" class="value-box">#####</span>Volts</td>
+            </tr>
+            <tr>
+                <td class="col1">Driver Command Voltage</td>
+                <td class="col2"><span id="DriverCommandVoltage" class="value-box">#####</span>Volts</td>
+            </tr>
+            <tr>
+                <td class="col1">Command IPA Power Supply</td>
+                <td class="col2"><span id="CommandIPAPowerSupply" class="value-box pa-command">#####</span></td>
+            </tr>
+            <tr>
+                <td class="col1">Command Pre Driver Power Supply</td>
+                <td class="col2"><span id="CommandPreDriverPowerSupply" class="value-box pa-command">#####</span></td>
+            </tr>
+            <tr>
+                <td class="col1">Slave Voltage In</td>
+                <td class="col2"><span id="SlaveVoltageIn" class="value-box">#####</span>Volts</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

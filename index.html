@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="dark-mode" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGE Broadcast | Telemetry</title>
+    <link rel="shortcut icon" href="img/logo-mge.svg" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: mgeletters;
+            src: url(/fonts/EngraversGothicBT.ttf);
+        }
+
+        @font-face {
+            font-family: mgenumbers;
+            src: url(/fonts/Square721BT.ttf);
+        }
+
+        .dark-mode {
+            --color-font: #FFFFFF;
+            --lightgray: #a2a2a2;
+            --background: #333333;
+            --azul-mge: #006cb4;
+            --btn-back-mge: #003b63;
+            --frame: #404040;
+            --frame-principal: #555555;
+            --shadow: #00000070;
+            --verde-linha-s: #59b952ff;
+            --red: #df3e3eff;
+            --yllw: #FFBB00;
+            --yllw-graph: #ffe601;
+        }
+
+        html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            scrollbar-color: var(--background) var(--shadow);
+            margin-top: 20px;
+            overflow: hidden;
+            font-family: mgeletters;
+            font-size: 1.2em;
+            color: var(--color-font);
+            background-color: var(--background);
+            scale: 1;
+        }
+
+        a {
+            color: var(--color-font);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        input {
+            border-radius: 10px;
+            border: none;
+        }
+
+        footer {
+            text-align: center;
+        }
+
+        #delta {
+            font-weight: normal;
+            font-family: arial;
+        }
+
+        #content {
+            transition: 1s;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .around {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .frame {
+            box-shadow: 0px 4px 4px 0px var(--shadow);
+            border-radius: 10px;
+            background-color: var(--frame);
+            padding: 10px;
+        }
+
+        .btn {
+            cursor: pointer;
+            box-shadow: 0px 4px 4px 0px var(--shadow);
+            font-weight: bold;
+            color: white;
+            border-color: var(--frame);
+            border-radius: 10px;
+        }
+
+        .btn:hover {
+            scale: 1.1;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            cursor: pointer;
+            transition: 0.1s;
+            box-shadow: inset 0px 0px 5px 0px var(--shadow);
+        }
+
+        .btn-primary {
+            background-color: var(--azul-mge);
+        }
+
+        .value-box {
+            text-align: center;
+            font-family: mgenumbers;
+            padding: 3px;
+            border: solid 1px var(--lightgray);
+            background-color: var(--background);
+            border-radius: 10px;
+            box-shadow: 0px 4px 4px 0px var(--shadow);
+            display: inline-block;
+            width: 71px;
+        }
+
+        /* Celulares Portrait Very Low */
+        @media (max-width: 340px) and (max-height: 600px) and (orientation: portrait) {
+            html {
+                margin-top: -30px;
+                scale: 0.47;
+            }
+
+            #display-painel {
+                margin-top: -380px;
+                width: 600px;
+            }
+        }
+
+        /* Celulares Portrait Low */
+        @media (max-width: 380px) and (min-height: 600px) and (orientation: portrait) {
+            html {
+                margin-top: -30px;
+                scale: 0.5;
+            }
+
+            #display-painel {
+                margin-top: -320px;
+                width: 600px;
+            }
+        }
+
+        /* Celulares Portrait Mid */
+        @media (max-width: 400px) and (min-height: 800px) and (orientation: portrait) {
+            html {
+                margin-top: -30px;
+                scale: 0.57;
+            }
+
+            #display-painel {
+                margin-top: -200px;
+                width: 600px;
+            }
+        }
+
+        /* Celulares Portrait High */
+        @media (max-width: 767px) and (min-width: 400px) and (orientation: portrait) {
+            html {
+                margin-top: -30px;
+                scale: 0.6;
+            }
+
+            #display-painel {
+                margin-top: -220px;
+                width: 600px;
+            }
+        }
+
+        /* Tablets Portrait */
+        @media (min-width: 768px) and (max-width: 1367px) and (orientation: portrait) {
+            html {
+                margin-top: -30px;
+                scale: 0.8;
+            }
+
+            #display-painel {
+                margin-top: -50px;
+                width: 600px;
+            }
+        }
+
+        /* Celulares Landscape Low */
+        @media (max-width: 800px) and (max-height: 400px) and (orientation: landscape) {
+            html {
+                margin-top: -80px;
+                scale: 0.6;
+            }
+
+            #display-painel {
+                scale: 0.75;
+                width: 1200px;
+                margin: -70px 0;
+            }
+        }
+
+        /* Celulares Landscape Mid */
+        @media (min-width: 800px) and (max-height: 400px) and (orientation: landscape) {
+            html {
+                margin-top: -60px;
+                scale: 0.6;
+            }
+
+            #display-painel {
+                scale: 0.75;
+                width: 1200px;
+                margin: -50px 0;
+                margin: -70px 0;
+            }
+        }
+
+        /* Celulares Landscape High */
+        @media (max-width: 991px) and (min-height: 400px) and (orientation: landscape) {
+            html {
+                margin-top: -60px;
+                scale: 0.6;
+            }
+
+            #display-painel {
+                scale: 0.85;
+                width: 1200px;
+                margin: -50px 0;
+            }
+        }
+
+        /* Tablets Landscape */
+        @media (min-width: 768px) and (max-width: 991px) and (orientation: landscape) {
+            html {
+                scale: 0.74;
+            }
+
+            #display-painel {
+                width: 1200px;
+            }
+        }
+
+        /* Notebooks */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            html {
+                scale: 0.75;
+            }
+
+            #display-painel {
+                width: 1200px;
+            }
+        }
+
+        /* PCs */
+        @media (min-width: 1200px) {
+            html {
+                scale: 0.95;
+            }
+
+            #display-painel {
+                width: 1200px;
+            }
+        }
+    </style>
+    <script defer src="js/jquery-3.7.1.min.js"></script>
+    <script defer src="js/script.js"></script>
+    <script defer src="js/logica.js"></script>
+</head>
+
+<body>
+    <main id="content">
+        <!-- All Content Here -->
+    </main>
+    <a href="MGE-FM50S.zip" download>
+        <footer class="center">
+            <h5>
+                © 2025 Copyright: MGE Broadcast Communication | All Rights Reserved.
+            </h5>
+        </footer>
+    </a>
+    <script>
+
+        function acionarCarrierPower() {
+  fetch('http://localhost:3000/carrier-power?value=1')
+    .then(res => res.text())
+    .then(alert);
+}</script>
+</body>
+
+</html>
+
