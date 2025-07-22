@@ -1,13 +1,13 @@
 $(document).ready(function () {
-    $("#content").load("../html/login.html");
+    $("#content").load("html/login.html");
 });
 
 function principal() {
-    $("#content").load("../html/principal.html");
+    $("#content").load("html/principal.html");
 }
 
 function exit() {
-    $("#content").load("../html/login.html");
+    $("#content").load("html/login.html");
 }
 
 function toggle_warning() {
@@ -21,14 +21,14 @@ function blink_warning() {
 function main_measurements() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-1").addClass("active-menu");
-    $("#display-content").load("../html/main-measurements.html");
+    $("#display-content").load("html/main-measurements.html");
     close_menu();
     setSelectPage("main-measurements");
 }
 
 function user_settings() {
     $(".link-menu").removeClass("active-menu");
-    $("#display-content").load("../html/user-settings.html");
+    $("#display-content").load("html/user-settings.html");
     close_menu();
     setSelectPage("user-settings");
 }
@@ -36,7 +36,7 @@ function user_settings() {
 function total_reverse() {
     $(".link-menu").removeClass("active-menu")
     $("#menu-2").addClass("active-menu");
-    $("#display-content").load("../html/total-reverse.html");
+    $("#display-content").load("html/total-reverse.html");
     close_menu();
     setSelectPage("total-reverse");
 }
@@ -44,7 +44,7 @@ function total_reverse() {
 function total_power() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-3").addClass("active-menu");
-    $("#display-content").load("../html/total-power.html");
+    $("#display-content").load("html/total-power.html");
     close_menu();
     setSelectPage("total-power");
 }
@@ -52,7 +52,7 @@ function total_power() {
 function temperature_measurements() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-8").addClass("active-menu");
-    $("#display-content").load("../html/temperature-measurements.html");
+    $("#display-content").load("html/temperature-measurements.html");
     close_menu();
     setSelectPage("temperature-measurements");
 }
@@ -60,7 +60,7 @@ function temperature_measurements() {
 function consumption_performance() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-9").addClass("active-menu");
-    $("#display-content").load("../html/consumption-performance.html");
+    $("#display-content").load("html/consumption-performance.html");
     close_menu();
     setSelectPage("consumption-performance");
 }
@@ -68,7 +68,7 @@ function consumption_performance() {
 function external_combiner_status() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-6").addClass("active-menu");
-    $("#display-content").load("../html/external-combiner-status.html");
+    $("#display-content").load("html/external-combiner-status.html");
     close_menu();
     setSelectPage("external-combiner-status");
 }
@@ -76,7 +76,7 @@ function external_combiner_status() {
 function external_faults_logs() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-4").addClass("active-menu");
-    $("#display-content").load("../html/external-faults-logs.html");
+    $("#display-content").load("html/external-faults-logs.html");
     close_menu();
     setSelectPage("external-faults-logs");
 }
@@ -84,7 +84,7 @@ function external_faults_logs() {
 function local_combiner_status() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-7").addClass("active-menu");
-    $("#display-content").load("../html/local-combiner-status.html");
+    $("#display-content").load("html/local-combiner-status.html");
     close_menu();
     setSelectPage("local-combiner-status");
 }
@@ -92,7 +92,7 @@ function local_combiner_status() {
 function local_combiner_rejection_load() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-7-1").addClass("active-menu");
-    $("#display-content").load("../html/local-combiner-rejection-load.html");
+    $("#display-content").load("html/local-combiner-rejection-load.html");
     close_menu();
     setSelectPage("local-combiner-rejection-load");
 }
@@ -100,7 +100,7 @@ function local_combiner_rejection_load() {
 function local_combiner_pa_current() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-7-2").addClass("active-menu");
-    $("#display-content").load("../html/local-combiner-pa-current.html");
+    $("#display-content").load("html/local-combiner-pa-current.html");
     close_menu();
     setSelectPage("local-combiner-pa-current");
 }
@@ -108,7 +108,7 @@ function local_combiner_pa_current() {
 function local_faults_logs() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-5").addClass("active-menu");
-    $("#display-content").load("../html/local-faults-logs.html");
+    $("#display-content").load("html/local-faults-logs.html");
     close_menu();
     setSelectPage("local-faults-logs");
 }
@@ -116,7 +116,7 @@ function local_faults_logs() {
 function pa_current_measurements() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-12").addClass("active-menu");
-    $("#display-content").load("../html/pa-current-measurements.html");
+    $("#display-content").load("html/pa-current-measurements.html");
     close_menu();
     setSelectPage("pa-current-measurements");
 }
@@ -124,7 +124,7 @@ function pa_current_measurements() {
 function pa_driver_status() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-10").addClass("active-menu");
-    $("#display-content").load("../html/pa-driver-status.html");
+    $("#display-content").load("html/pa-driver-status.html");
     close_menu();
     setSelectPage("pa-driver-status");
 }
@@ -132,7 +132,7 @@ function pa_driver_status() {
 function voltage_meters() {
     $(".link-menu").removeClass("active-menu");
     $("#menu-11").addClass("active-menu");
-    $("#display-content").load("../html/voltage-meters.html");
+    $("#display-content").load("html/voltage-meters.html");
     close_menu();
     setSelectPage("voltage-meters");
 }
